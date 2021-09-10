@@ -1,0 +1,9 @@
+/.vs/Rocket Grid/v16
+/*.csproj
+/Library
+/Temp
+/obj/Debug
+/.vs/BulletRogueHell/v16
+/*.sln
+
+.vs/
