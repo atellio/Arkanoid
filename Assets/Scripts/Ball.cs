@@ -5,9 +5,10 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     private Rigidbody2D rigBody;
-    private Vector2 velocity = new Vector2(1, 1);
+    private CircleCollider2D circleCollider;
+    private Vector2 velocity = new Vector2(0, 1);
     private float speed = 6f;
-    private float radius = 0.07f;
+    private float radius = .2f;
 
     Vector2 colCheckPos;
 
@@ -15,6 +16,8 @@ public class Ball : MonoBehaviour
     private void Awake()
     {
         rigBody = GetComponent<Rigidbody2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
+        radius = circleCollider.radius * transform.localScale.x;
     }
 
     private void Start()
@@ -24,19 +27,10 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-
-        //if(Input.GetKeyDown(KeyCode.O))
-        //{
         if(!DoCollisionCheck())
         {
             DoMove();
         }
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.P))
-        //{
-            //DoMove();
-        //}
     }
 
     private bool DoCollisionCheck()

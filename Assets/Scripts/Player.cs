@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public Vector2 Velocity { get; private set; }
-    private float speed = 7f;
 
+    private float speed = 7f;
+    private const string POWERUP_TAG = "Powerup";
 
     void Update()
     {
@@ -16,6 +17,15 @@ public class Player : MonoBehaviour
         if (horizontal != 0)
         {
             transform.Translate(Velocity * Time.deltaTime);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag(POWERUP_TAG))
+        {
+            Powerup powerup = collision.gameObject.GetComponent<Powerup>();
+            if (powerup) powerup.Collect();
         }
     }
 }

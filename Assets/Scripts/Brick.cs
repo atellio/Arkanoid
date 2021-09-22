@@ -33,6 +33,8 @@ public class Brick : MonoBehaviour
 
     private void DoDeath()
     {
+        Powerup powerup = PowerupManager.Instance.GetPowerup();
+        powerup.transform.position = transform.position;
         Destroy(gameObject);
     }
 
@@ -48,6 +50,14 @@ public class Brick : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        spriteRenderer.color = Color.white;
+        switch(Health)
+        {
+            case 2:
+                spriteRenderer.color = Color.yellow;
+                break;
+            case 1:
+                spriteRenderer.color = Color.magenta;
+                break;
+        }
     }
 }
