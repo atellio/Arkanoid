@@ -14,20 +14,17 @@ public class Brick : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnHit()
     {
-        if(collision.gameObject.CompareTag("Ball"))
-        {
-            Health--;
+        Health--;
 
-            if(Health <= 0)
-            {
-                DoDeath();
-            }
-            else
-            {
-                DoDamageAnimation();
-            }
+        if (Health <= 0)
+        {
+            DoDeath();
+        }
+        else
+        {
+            DoDamageAnimation();
         }
     }
 
