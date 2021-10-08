@@ -6,8 +6,10 @@ public class Player : MonoBehaviour
 {
     public Vector2 Velocity { get; private set; }
 
+    private List<Ball> attachedBalls = new List<Ball>();
     private float speed = 7f;
     private const string POWERUP_TAG = "Powerup";
+
 
     void Update()
     {
@@ -18,6 +20,19 @@ public class Player : MonoBehaviour
         {
             transform.Translate(Velocity * Time.deltaTime);
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Fire();
+        }
+    }
+
+    public void AddBall(Ball ball)
+    {
+        if(!attachedBalls.Contains(ball))
+        {
+            attachedBalls.Add(ball);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,5 +42,10 @@ public class Player : MonoBehaviour
             Powerup powerup = collision.gameObject.GetComponent<Powerup>();
             if (powerup) powerup.Collect();
         }
+    }
+
+    private void Fire()
+    {
+
     }
 }
